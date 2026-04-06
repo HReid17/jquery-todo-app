@@ -1,51 +1,49 @@
 // Wait until the HTML page is fully loaded before running any jQuery
 $(document).ready(function () {
 
-    // Add a click event to the "Add Task" button
-    $("#addTaskBtn").on("click", function () {
+    // Function to add a new task
+    function addTask() {
 
-        // Get the value from the input field and remove any extra spaces
+        // Get the value from the input field and remove extra spaces
         const taskText = $("#taskInput").val().trim();
 
-        // If the input is empty, show an alert and stop the function
+        // If the input is empty, show an alert and stop
         if (taskText === "") {
             alert("Please enter a task");
-            return; // stops the rest of the code from running
+            return;
         }
 
-        // Add a new task item to the task list
-        // This includes the task text, a complete button, and a delete button
+        // Add a new task item to the list
         $("#taskList").append(`
-      <li class="task-item">
-        <span class="task-text">${taskText}</span>
-        <button class="complete-btn">Complete</button>
-        <button class="delete-btn">Delete</button>
-      </li>
-    `);
+            <li class="task-item">
+                <span class="task-text">${taskText}</span>
+                <button class="complete-btn">Complete</button>
+                <button class="delete-btn">Delete</button>
+            </li>
+        `);
 
-        // Clear the input field after adding the task
+        // Clear the input field
         $("#taskInput").val("");
+    }
+
+    // Add task when button is clicked
+    $("#addTaskBtn").on("click", addTask);
+
+    // Add task when Enter key is pressed
+    $("#taskInput").on("keydown", function (event) {
+        if (event.key === "Enter") {
+            addTask(); // reuse the same function (cleaner than .click())
+        }
     });
 
-    // Listen for clicks on any delete button
-    // We use $(document) because the buttons are added dynamically
+    // Delete task (event delegation for dynamically added elements)
     $(document).on("click", ".delete-btn", function () {
-
-        // 'this' = the delete button that was clicked
-        // .parent() = the <li> that contains the task
-        // .remove() = removes that task from the DOM
         $(this).parent().remove();
-
     });
 
-    // Listen for clicks on any complete button
+    // Toggle completed state
     $(document).on("click", ".complete-btn", function () {
-
-        // 'this' = the complete button that was clicked
-        // .siblings(".task-text") finds the task text in the same <li>
-        // .toggleClass("completed") adds the class if it is missing
-        // and removes it if already there
         $(this).siblings(".task-text").toggleClass("completed");
-
     });
+
 });
