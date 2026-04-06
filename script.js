@@ -26,4 +26,15 @@ $(document).ready(function () {
         // Clear the input field after adding the task
         $("#taskInput").val("");
     });
+
+    // Listen for clicks on any delete button
+    // We use $(document) because the buttons are added dynamically
+    $(document).on("click", ".delete-btn", function () {
+
+        // 'this' = the delete button that was clicked
+        // .parent() = the <li> that contains the task
+        // .remove() = removes that task from the DOM
+        $(this).parent().remove();
+
+    });
 });
