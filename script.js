@@ -37,4 +37,15 @@ $(document).ready(function () {
         $(this).parent().remove();
 
     });
+
+    // Listen for clicks on any complete button
+    $(document).on("click", ".complete-btn", function () {
+
+        // 'this' = the complete button that was clicked
+        // .siblings(".task-text") finds the task text in the same <li>
+        // .toggleClass("completed") adds the class if it is missing
+        // and removes it if already there
+        $(this).siblings(".task-text").toggleClass("completed");
+
+    });
 });
