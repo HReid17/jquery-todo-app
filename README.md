@@ -64,19 +64,19 @@ jquery-todo-app/
 
 # Home View
 
-![Home Screenshot](../screenshots/home.png)
+![Home Screenshot](./screenshots/home.png)
 
 ---
 
 # Adding a Task
 
-![Show-Tasks Screenshot](../screenshots/added-task.png)
+![Show-Tasks Screenshot](./screenshots/added-task.png)
 
 ---
 
 # Completing a Task
 
-![Completed-Tasks Screenshot](../screenshots/completed-task.png)
+![Completed-Tasks Screenshot](./screenshots/completed-task.png)
 
 ---
 
